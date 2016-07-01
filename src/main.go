@@ -24,7 +24,8 @@ func main() {
 	router.HandleFunc("/get-record/{accountId}/{from}/{to}", AddRecord) // Endpoint for adding transaction record from a particular month to another
 
 	router.HandleFunc("/delete-record/{transactionId}", DeleteRecord) // Endpoint for deleting a transaction by its UID
-	router.HandleFunc("/get-prediction/{accountId}", Predict)         // Endpoint for retrieving a prediction for spending on a particular month
+
+	router.HandleFunc("/get-prediction/{accountId}", Predict) // Endpoint for retrieving a prediction for spending on a particular month
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
