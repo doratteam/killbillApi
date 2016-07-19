@@ -1,9 +1,7 @@
-package killbill_go
-
-import "fmt"
+package killbillApi
 
 type transaction struct {
 	uuid      string
-	ownerUuid string
+	ownerUUID string
 	amount    float32
 }

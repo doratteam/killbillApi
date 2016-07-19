@@ -1,4 +1,4 @@
-package killbill_go
+package killbillApi
 
 import "fmt"
 

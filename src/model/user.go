@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package killbillApi
 
 type user struct {
 	uuid      string
