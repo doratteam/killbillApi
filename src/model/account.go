@@ -1,6 +1,4 @@
-package killbillApi
-
-import "fmt"
+package model
 
 type account struct {
 	uuid    string

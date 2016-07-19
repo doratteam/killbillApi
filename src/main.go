@@ -1,11 +1,12 @@
-package killbillApi
+package main
 
 import (
 	"fmt"
 	"log"
 	"net/http"
 
-	"github.com/doratteam/killbillApi/view/login"
+	"view"
+
 	"github.com/gorilla/mux"
 )
 
@@ -13,8 +14,8 @@ func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	/* The following are the API endpoints. This may change over time*/
 
-	router.HandleFunc("/login", login.Login)   // Endpoint for logging in
-	router.HandleFunc("/signup", login.Signup) // Endpoint for signing up
+	router.HandleFunc("/login", view.Login)   // Endpoint for logging in
+	router.HandleFunc("/signup", view.Signup) // Endpoint for signing up
 
 	router.HandleFunc("/add-record/{accountId}", AddRecord) // Endpoint for adding a transaction record
 

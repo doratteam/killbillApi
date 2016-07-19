@@ -1,9 +1,12 @@
-package killbillApi
+package model
 
-type user struct {
-	uuid      string
-	email     string
-	firstname string
-	lastname  string
-	age       int
+import "github.com/satori/go.uuid"
+
+type User struct {
+	// User struct type
+	UUID      uuid.UUID
+	Email     string
+	Firstname string
+	Lastname  string
+	Age       int
 }
