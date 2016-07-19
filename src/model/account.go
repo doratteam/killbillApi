@@ -1,4 +1,4 @@
-package main
+package killbill_go
 
 import "fmt"
 
