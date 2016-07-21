@@ -1,4 +1,4 @@
-package model
+package killbillApi
 
 type transaction struct {
 	uuid      string

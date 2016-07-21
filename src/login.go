@@ -1,11 +1,10 @@
-package view
+package killbillApi
 
 import (
 	"fmt"
 	"net/http"
 
-	"model"
-
+	"github.com/doratteam/killbillApi/"
 	"github.com/satori/go.uuid"
 )
 
@@ -17,7 +16,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 // Signup Endpoint
 func Signup(w http.ResponseWriter, r *http.Request) {
 	// Endpoint for signing up
-	var newUser model.User
+	var newUser killbillApi.User
 	newUser.UUID = uuid.NewV4()
 
 	fmt.Fprintln(w, "Hit /Signup endpoint. To be implemented")
