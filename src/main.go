@@ -5,7 +5,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/doratteam/killbillApi"
 	"github.com/gorilla/mux"
 )
 
@@ -13,8 +12,8 @@ func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	/* The following are the API endpoints. This may change over time*/
 
-	router.HandleFunc("/login", killbillApi.Login)   // Endpoint for logging in
-	router.HandleFunc("/signup", killbillApi.Signup) // Endpoint for signing up
+	router.HandleFunc("/login", Login)   // Endpoint for logging in
+	router.HandleFunc("/signup", Signup) // Endpoint for signing up
 
 	router.HandleFunc("/add-record/{accountId}", AddBalance) // Endpoint for adding a transaction record
 
