@@ -9,3 +9,23 @@ Required Dependencies:
 - <a href="github.com/satori/go.uuid">Golang UUID Helper</a>
 
 - MySQL (Make sure you have the user "kb" with password "kb")
+
+
+#### Testing
+go test
+
+
+
+#### Building
+This builds an executable in current directory
+```
+go build 
+```
+
+
+Alternatively:
+```
+go install
+```
+That will build executable in $GOBIN/bin/
+

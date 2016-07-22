@@ -1,4 +1,4 @@
-package killbillApi
+package main
 
 import (
 	"fmt"
@@ -25,6 +25,7 @@ func main() {
 	router.HandleFunc("/get-prediction/{accountId}", Predict)         // Endpoint for retrieving a prediction for spending on a particular month
 
 	log.Fatal(http.ListenAndServe(":8080", router))
+
 }
 
 // This is the endpoint for adding balance
