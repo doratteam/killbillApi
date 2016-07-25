@@ -11,9 +11,11 @@ import (
 // Serializer - interface every model should implement for db service to be able to save them to db
 type Serializer interface {
 	Serialize() string
+	DeSerialize(r *sql.Row) interface{}
 }
 
 // ListColumn - interface every model should implement for db service to know which columns exist for the model's table
+// on a second thought, this might be unnecessary...
 type ListColumn interface {
 	Columns() string
 }

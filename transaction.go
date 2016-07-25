@@ -29,6 +29,12 @@ func (t Transaction) Serialize() string {
 	return "(" + t.UUID.String() + "," + t.AccountID.String() + "," + t.Date + "," + strconv.FormatFloat(t.Amount, 'f', 2, 64) + "," + strconv.FormatInt(t.Categories, 10) + "," + t.Desc + ")"
 }
 
+// DeSerialize - called by db service to deserialize a row to a Transaction
+func (t Transaction) DeSerialize(r *sql.Row) interface{} {
+	//TODO: scan the given row with r.Scan() function and return an appropriate Transaction
+	return Transaction{}
+}
+
 // CreateTransaction - creates a new transaction and returns it
 func CreateTransaction(accountID uuid.UUID, date string, amount float64, categories int64, desc string) Transaction {
 	return Transaction{
