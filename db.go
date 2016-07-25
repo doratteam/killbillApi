@@ -61,11 +61,11 @@ func insertToDB(db sql.DB, tableName string, dbQuery string) int64 {
 	// Takes in pointer to the db, table name as String, and the query to execute as string
 	// Returns the ID of the row
 	stmt, err := db.Prepare("INSERT INTO " + tableName + " VALUES(?)")
-	if err := nil {
+	if err == nil {
 		log.Fatal(err)
 	}
 	res, err := stmt.Exec(dbQuery)
-	if err := nil {
+	if err == nil {
 		log.Fatal(err)
 	}
 	lastId, err := res.LastInsertId()
@@ -75,6 +75,23 @@ func insertToDB(db sql.DB, tableName string, dbQuery string) int64 {
 	return lastId
 }
 
-func readFromDB(db sql.DB) {
-	fmt.Println("Not implemented yet")
+func readFromDB(db sql.DB, tablename string, fields string, query string, value string) string {
+	// Reads from User DB that matches the query and returns string of result
+	// NOTE: go/sql Scan function already implements the deserialization necessary
+	// Just means DB layer needs to contain some sort of 'logic'
+	// Will discuss later
+	// Example usage:
+	// To execute "select name from users where id = 3", call this function with:
+	// readFromDB(*db, "users", "name", "id", "3")
+	var result string
+
+	rows, err := db.QueryRow("SELECT " + fields + " FROM " + table + " WHERE " + query + " = " + value).Scan(&result)
+
+	defer rows.Close()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return result
 }
