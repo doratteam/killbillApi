@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -19,7 +20,7 @@ func main() {
 
 	router.HandleFunc("/get-record/{accountId}", GetTransactions)                 // Endpoint for getting all known transaction record in history
 	router.HandleFunc("/get-record/{accountId}/{month}", GetTransactions)         // Endpoint for getting all transactions in a particular month
-	router.HandleFunc("/get-record/{accountId}/{transactionId}", GetTransactions) //Endpoint for getting one particular transaction
+	router.HandleFunc("/get-record/{accountId}/{transactionId}", GetTransactions) // Endpoint for getting one particular transaction
 
 	router.HandleFunc("/update-record/{accountId}/{transactionId}", UpdateTransaction)
 
@@ -35,6 +36,13 @@ func main() {
 func AddTransaction(w http.ResponseWriter, r *http.Request) {
 	accountID := mux.Vars(r)["accountId"]
 	fmt.Fprintln(w, "Hit /AddBalance endpoint. To be implemented", accountID)
+	categories := r.PostFormValue("categories")
+	amount, err := strconv.ParseFloat(r.PostFormValue("amount"), 64)
+	date := r.PostFormValue("date")
+	desc := r.PostFormValue("desc")
+	// create a new transaction and save it using model
+	// update the account balance
+	// write a response that contains transaction's uuid if created succesfully
 }
 
 // GetTransactions - This is the endpoint for getting one or more transactions associated with the given account
@@ -42,6 +50,7 @@ func AddTransaction(w http.ResponseWriter, r *http.Request) {
 func GetTransactions(w http.ResponseWriter, r *http.Request) {
 	accountID := mux.Vars(r)["accountId"]
 	fmt.Fprintln(w, "Hit /GetTransactions endpoint. To be implemented", accountID)
+	// a proper query for each case needs to be implemented as a function in model/db services, this function should call those functions
 }
 
 // UpdateTransaction - This is the endpoint for updating a transaction, which triggers updating balance of the given account
@@ -51,6 +60,7 @@ func UpdateTransaction(w http.ResponseWriter, r *http.Request) {
 	accountID := rvars["accountId"]
 	transactionID := rvars["transactionId"]
 	fmt.Fprintln(w, "Hit /UpdateTransaction endpoint. To be implemented", accountID, transactionID)
+	// call to db service to get transaction with the given transactionID and accountID
 }
 
 // DeleteRecord - This is the endpoint for deleting a transaction, which also triggers updating balance of the given account

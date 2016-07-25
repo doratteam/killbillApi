@@ -2,10 +2,21 @@ package main
 
 import (
 	"database/sql"
+	"log"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/satori/go.uuid"
-	"log"
 )
+
+// Serializer - interface every model should implement for db service to be able to save them to db
+type Serializer interface {
+	Serialize() string
+}
+
+// ListColumn - interface every model should implement for db service to know which columns exist for the model's table
+type ListColumn interface {
+	Columns() string
+}
 
 type User struct {
 	UUID      uuid.UUID
