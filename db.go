@@ -56,3 +56,25 @@ func OpenDatabases() *sql.DB {
 func closeUserDB(db sql.DB) {
 	db.Close()
 }
+
+func insertToDB(db sql.DB, tableName string, dbQuery string) int64 {
+	// Takes in pointer to the db, table name as String, and the query to execute as string
+	// Returns the ID of the row
+	stmt, err := db.Prepare("INSERT INTO " + tableName + " VALUES(?)")
+	if err := nil {
+		log.Fatal(err)
+	}
+	res, err := stmt.Exec(dbQuery)
+	if err := nil {
+		log.Fatal(err)
+	}
+	lastId, err := res.LastInsertId()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return lastId
+}
+
+func readFromDB(db sql.DB) {
+	fmt.Println("Not implemented yet")
+}
